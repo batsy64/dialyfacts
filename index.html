@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Fact</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Georgia', serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      max-width: 420px;
+      width: 100%;
+    }
+    .label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: #666;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .hook {
+      font-size: 22px;
+      line-height: 1.5;
+      color: #fff;
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: #ff6b35;
+      margin-bottom: 32px;
+    }
+    .depth {
+      font-size: 15px;
+      line-height: 1.9;
+      color: #999;
+    }
+    .date {
+      margin-top: 40px;
+      font-size: 11px;
+      color: #444;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="label">Today's Fact</div>
+    <div class="hook" id="hook">Loading...</div>
+    <div class="divider"></div>
+    <div class="depth" id="depth"></div>
+    <div class="date" id="date"></div>
+  </div>
+
+  <script>
+    async function loadFact() {
+      try {
+        const res = await fetch('fact.json');
+        const data = await res.json();
+        document.getElementById('hook').textContent = data.hook;
+        document.getElementById('depth').textContent = data.depth;
+        document.getElementById('date').textContent = data.date;
+      } catch(e) {
+        document.getElementById('hook').textContent = "No fact yet. Check back tomorrow.";
+      }
+    }
+    loadFact();
+  </script>
+</body>
+</html>
