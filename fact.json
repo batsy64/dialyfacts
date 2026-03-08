@@ -1,0 +1,5 @@
+{
+  "hook": "Your daily fact will appear here every morning.",
+  "depth": "Once your n8n workflow runs, this will update automatically with something mind-blowing.",
+  "date": "Setting up..."
+}
